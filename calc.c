@@ -12,7 +12,7 @@ int main(){
 	if(fp!=NULL){
 		fscanf(fp, "%d", &line);
 	
-		for(int i=0; i<line; i++) {
+		for(int i=0; i<line-1; i++) {
 			fscanf(fp, "%d %c %d",&operand1, &operator, &operand2);
 			switch(operator) {
 				case '+':
