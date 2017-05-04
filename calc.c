@@ -2,7 +2,8 @@
 #include "operators.h"
 
 int main(){
-	FILE *fp = NULL;
+	FILE *fp_f = NULL;
+	double (*fp) (int,int);
 	int operand1, operand2;
 	char operator = ' ';
 	int result, line = 0;
@@ -12,18 +13,22 @@ int main(){
 		fscanf(fp, "%d", &line);
 	
 		for(int i=0; i<line; i++) {
-			fscanf(fp, "%d %c %d",&operand1, &operator, &operand2);
+			fscanf(fp_f, "%d %c %d",&operand1, &operator, &operand2);
 			switch(operator) {
 				case '+':
-				result = add(operand1, operator);
+				fp = add;
+				result = fp(operand1, operator);
 				break;
 				case '-':
-				result = minus(operand1, operator);
+				fp = minus;
+				result = fp(operand1, operator);
 				break;
 				case '*':
-				result = mul(operand1, operator);
+				fp = mul;
+				result = fp(operand1, operator);
 				case '/':
-				result = div(operand1, operator);
+				fp = div;
+				result = fp(operand1, operator);
 				break;
 			}		
 			printf("%d %c %d = %d\n",
